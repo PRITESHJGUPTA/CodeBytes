@@ -1,0 +1,10 @@
+class Solution {
+  public:
+    int largest(vector<int> &arr) {
+    for(int i = 1; i < arr.size(); i++)
+        if(arr[0] < arr[i])
+            arr[i] = arr[0] + arr[i] - (arr[0] = arr[i]);
+    return arr[0];
+}
+
+};
