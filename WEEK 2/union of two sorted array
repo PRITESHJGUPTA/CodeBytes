@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> unionOfArraysWithDuplicates(const vector<int>& a, const vector<int>& b) {
+    vector<int> res;
+    for (int i = 0, j = 0; i < a.size() || j < b.size();) {
+        if (i < a.size() && (j >= b.size() || a[i] <= b[j])) res.push_back(a[i++]);
+        else if (j < b.size()) res.push_back(b[j++]);
+        if (!res.empty() && res.back() == a[i-1] && res.back() == b[j-1]) res.pop_back();
+    }
+    return res;
+}
+
+int main() {
+    vector<int> a = {1, 2, 2, 3, 5}, b = {2, 2, 3, 4, 6};
+    for (int n : unionOfArraysWithDuplicates(a, b)) cout << n << " ";
+}
